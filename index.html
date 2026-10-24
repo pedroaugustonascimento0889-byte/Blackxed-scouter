@@ -4,7 +4,8 @@
 <script>
   const SUPABASE_URL = "https://inluwydysdsouropsqpn.supabase.co";
   const SUPABASE_KEY = "sb_publishable_EYKd_8ChVTLfUev4J0LWWg_6SctIoj-";
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const { createClient } = window.supabase;
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 </script>
   
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
