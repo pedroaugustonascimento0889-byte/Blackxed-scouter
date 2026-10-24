@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
+<head><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://inluwydysdsouropsqpn.supabase.co/rest/v1/";
+  const SUPABASE_KEY = "sb_publishable_EYKd_8ChVTLfUev4J0LWWg_6SctIoj-";
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+</script>
+  
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blackxed Scouter</title>
 <style>
@@ -30,4 +36,12 @@ for(const [key,g] of Object.entries(groups)){let details=document.createElement(
 renderUsage(battles);let tour=battles.filter(b=>b.tournament||/smogtours/i.test(b.urlReplay));let filter=$('tournamentFilter');filter.innerHTML='<option value="all">Todos os resultados identificados</option>'+[...new Set(tour.map(b=>String(b.tier)))].map(t=>`<option value="${esc(t)}">${esc(titleTier(t))}</option>`).join('');function renderTournamentList(){let selected=filter.value,filtered=tour.filter(b=>selected==='all'||String(b.tier)===selected);$('tournamentResults').innerHTML=filtered.length?`<p class="hint">Replays identificados como possivelmente ligados a torneios. O filtro usa a tier porque a API pública nem sempre fornece o nome oficial do torneio.</p>`+filtered.map(b=>`<article class="tournament-card"><b>${esc(titleTier(b.tier))}</b> · ${esc(b.date)}<div>${esc(b.a)} vs ${esc(b.b)} — <span style="color:${b.outcome==='win'?'#7ff0bb':b.outcome==='loss'?'#ff9aa5':'#e8c76f'}">${b.outcome==='win'?'VITÓRIA':b.outcome==='loss'?'DERROTA':'RESULTADO INDEFINIDO'}</span></div><a href="${esc(b.urlReplay)}" target="_blank" rel="noopener">Abrir replay do torneio ↗</a></article>`).join(''):'<div class="empty"><strong>Nenhum replay de torneio identificado</strong>Esta busca mostra replays públicos da tier selecionada. Nem todos os torneios da Smogon publicam replays na API do Showdown; a lista não garante um histórico completo.</div>'}renderTournamentList();filter.onchange=renderTournamentList;
 let wins=battles.filter(b=>b.outcome==='win').length,losses=battles.filter(b=>b.outcome==='loss').length;summary.innerHTML=`<span class="pill">Jogador: <b>${esc(nick)}</b></span><span class="pill">Tier: <b>${esc(tier)}</b></span><span class="pill">Replays: <b>${battles.length}</b></span><span class="pill" style="color:#7ff0bb">Vitórias: <b>${wins}</b></span><span class="pill" style="color:#ff9aa5">Derrotas: <b>${losses}</b></span><span class="pill">Win rate: <b>${Math.round(wins/Math.max(1,wins+losses)*100)}%</b></span>`;status.textContent='Scout carregado. Veja Usage Pokémon e Torneios Smogon nas abas acima.'}catch(e){console.error(e);status.textContent='Não foi possível acessar a API agora. Confira sua conexão e tente novamente.'}finally{btn.disabled=false}}
 $('searchForm').addEventListener('submit',e=>{e.preventDefault();let nick=$('nick').value.trim(),tier=normalizeTier($('tier').value);if(!nick||!tier)return;search(nick,tier)});$('requestAccess').addEventListener('click',()=>{const n=$('discordNick').value.trim();$('requestStatus').textContent=n?'Nick informado: '+n+'. O pedido ainda não foi enviado ao administrador: é necessário conectar um backend seguro de solicitações e aprovação.':'Digite seu nick do Discord primeiro.'});
+async function enviarNick(nick) {
+  const { data, error } = await supabase
+    .from('access_requests')
+    .insert([{ discord_nick: nick }]);
+    
+  if (error) alert('Erro: ' + error.message);
+  else alert('Solicitação enviada! ✅');
+}
 </script></body></html>
