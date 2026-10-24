@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0d16">
+<title>Blackxed Scout</title>
+<style>
+:root{--bg:#0a0d16;--panel:#111726;--panel2:#171f31;--line:#29334a;--text:#edf2ff;--muted:#9ca9c4;--accent:#a78bfa;--cyan:#67e8f9;--green:#86efac;--red:#fda4af}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 10% 0%,#1d2140 0,transparent 40%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:1150px;margin:auto;padding:24px 16px 50px}.top{display:flex;align-items:center;gap:14px;margin-bottom:24px}.logo{width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,#8b5cf6,#22d3ee);display:grid;place-items:center;font-size:25px;font-weight:900;color:#080b14}.brand{font-size:25px;font-weight:850;letter-spacing:-.7px}.sub{color:var(--muted);font-size:13px}.pill{margin-left:auto;border:1px solid #35405b;border-radius:99px;padding:6px 10px;color:#c4b5fd;font-size:12px}
+.hero{border:1px solid var(--line);background:linear-gradient(125deg,#171d31,#111725 60%,#10232d);border-radius:22px;padding:24px;margin-bottom:18px}.eyebrow{color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:1.7px}.hero h1{font-size:clamp(28px,5vw,42px);line-height:1.1;margin:8px 0}.hero p{color:var(--muted);max-width:740px;margin:0 0 20px}
+form{display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:10px}.field label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}input,select,button{font:inherit;border-radius:11px;border:1px solid #35405b;background:#0c1220;color:var(--text);padding:12px;width:100%;outline:none}input:focus,select:focus{border-color:var(--accent)}button{background:linear-gradient(110deg,#8b5cf6,#6366f1);border:0;font-weight:800;cursor:pointer;padding:12px 18px;align-self:end}button:disabled{opacity:.55;cursor:wait}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}.stat,.panel{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:16px}.stat .n{font-size:26px;font-weight:850;letter-spacing:-.5px}.stat .l{font-size:12px;color:var(--muted)}.panel{margin:14px 0}.panel h2{font-size:17px;margin:0 0 12px}.rowhead{display:flex;align-items:center;justify-content:space-between;gap:10px}.muted{color:var(--muted)}.small{font-size:12px}.empty{padding:24px;text-align:center;color:var(--muted);border:1px dashed #35405b;border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:650}tr:last-child td{border-bottom:0}.bar{height:6px;background:#263047;border-radius:20px;overflow:hidden;margin-top:5px;min-width:80px}.bar span{display:block;height:100%;background:linear-gradient(90deg,#8b5cf6,#22d3ee)}
+.replay{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.replay:last-child{border-bottom:0}.badge{font-size:11px;background:#202a40;border:1px solid #35405b;color:#c4b5fd;border-radius:7px;padding:4px 7px;white-space:nowrap}.replay-main{flex:1;min-width:0}.replay-title{font-weight:750;overflow-wrap:anywhere}.replay a,.link{color:var(--cyan);text-decoration:none}.replay a:hover,.link:hover{text-decoration:underline}.notice{background:#151c2b;border-left:3px solid var(--accent);padding:12px 14px;border-radius:8px;color:var(--muted);font-size:12px;margin-top:14px}.error{color:var(--red);white-space:pre-wrap}.actions{display:flex;gap:8px;flex-wrap:wrap}.secondary{width:auto;background:#202a40;border:1px solid #35405b;padding:8px 12px;font-size:12px}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.checkline{display:flex;align-items:flex-start;gap:9px;margin-top:10px;color:var(--muted);font-size:12px}.checkline input{width:auto;margin-top:4px}.account-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.account{display:flex;align-items:center;gap:7px;background:#202a40;border:1px solid #35405b;border-radius:9px;padding:7px 10px;font-size:12px}.account input{width:auto}.tag{font-size:11px;color:var(--green)}.tour-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.tour-form .wide{grid-column:1/-1}.tour-item{padding:12px 0;border-bottom:1px solid var(--line)}.tour-item:last-child{border-bottom:0}.tour-title{font-weight:800}.footer{text-align:center;color:#7f8ba5;font-size:12px;padding:20px 0}
+@media(max-width:800px){form{grid-template-columns:1fr 1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.pill{display:none}}
+@media(max-width:520px){form,.tour-form{grid-template-columns:1fr}.tour-form .wide{grid-column:auto}.hero{padding:18px}.replay{align-items:flex-start;flex-wrap:wrap}.replay .badge{white-space:normal}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="top"><div class="logo">B</div><div><div class="brand">Blackxed Scout</div><div class="sub">Pokémon Showdown · Competitive scouting</div></div><div class="pill">BETA 0.2 · PUBLIC DATA</div></header>
+<section class="hero"><div class="eyebrow">SCOUTING WORKSPACE</div><h1>Leia o jogo antes<br>de entrar na batalha.</h1><p>Pesquise nicks, confirme manualmente quais contas pertencem ao jogador, filtre qualquer formato disponível e transforme replays públicos em um resumo de preparação.</p>
+<form id="searchForm">
+<div class="field"><label for="nick">Nick principal do Showdown</label><input id="nick" placeholder="Nick" required autocomplete="off"></div>
+<div class="field"><label for="tier">Formato (opcional)</label><select id="tier"><option value="">Todos os formatos</option><optgroup label="Geração 9"><option value="gen9ou">SV OU</option><option value="gen9uu">SV UU</option><option value="gen9ru">SV RU</option><option value="gen9nu">SV NU</option><option value="gen9pu">SV PU</option><option value="gen9ubers">SV Ubers</option><option value="gen9lc">SV LC</option><option value="gen9monotype">SV Monotype</option><option value="gen9doublesou">SV Doubles OU</option><option value="gen9nationaldex">National Dex</option></optgroup><optgroup label="Gerações anteriores"><option value="gen8ou">SS OU</option><option value="gen7ou">SM OU</option><option value="gen6ou">ORAS OU</option><option value="gen5ou">BW OU</option><option value="gen4ou">DPP OU</option><option value="gen3ou">ADV OU</option><option value="gen2ou">GSC OU</option><option value="gen1ou">RBY OU</option></optgroup></select></div>
+<div class="field"><label for="customFormat">Ou digite um formato</label><input id="customFormat" placeholder="Ex.: gen7uu, gen9doublesou"></div>
+<button id="go" type="submit">Analisar ↗</button></form>
+<div class="notice">Os formatos são os IDs usados pelo Showdown. Deixe o formato em branco para buscar sem filtro. A API retorna no máximo 51 resultados por página; use “Carregar mais” quando disponível. Replays privados não são acessíveis.</div></section>
+<div id="status" class="muted small" aria-live="polite">Digite um nick para começar.</div>
+<section class="two">
+<div class="panel"><h2>1 · Verificação manual de contas</h2><p class="muted small">O scout não presume que contas parecidas pertencem à mesma pessoa. Adicione os nicks que você conferiu e marque somente os que confirmou.</p><div class="field"><label for="aliasInput">Adicionar outro nick do Showdown</label><div style="display:flex;gap:8px"><input id="aliasInput" placeholder="Nick alternativo"><button type="button" id="addAlias" class="secondary">Adicionar</button></div></div><div id="accounts" class="account-list"></div><label class="checkline"><input id="confirmIdentity" type="checkbox"><span>Confirmo manualmente que as contas selecionadas são do mesmo jogador. Essa confirmação é minha, não uma verificação oficial do Showdown.</span></label></div>
+<div class="panel"><h2>2 · Atalhos de perfil</h2><p class="muted small">O perfil público pode mostrar ratings de ladder por formato. Isso é diferente de uma porcentagem de uso de Pokémon.</p><div class="actions"><a id="profileLink" class="link" href="https://pokemonshowdown.com/users/" target="_blank" rel="noopener">Abrir perfil público ↗</a><a id="replaySearch" class="link" href="https://replay.pokemonshowdown.com/" target="_blank" rel="noopener">Busca oficial de replays ↗</a><a id="forumSearch" class="link" href="https://www.smogon.com/forums/search/" target="_blank" rel="noopener">Pesquisar no fórum Smogon ↗</a></div><div id="ladder" class="muted small" style="margin-top:12px">Ratings do perfil ainda não consultados.</div></div>
+</section>
+<section class="grid" id="stats"><div class="stat"><div class="n">—</div><div class="l">Replays únicos</div></div><div class="stat"><div class="n">—</div><div class="l">Vitórias identificadas</div></div><div class="stat"><div class="n">—</div><div class="l">Pokémon vistos</div></div><div class="stat"><div class="n">—</div><div class="l">Formato</div></div></section>
+<section class="panel"><div class="rowhead"><h2>Pokémon mais vistos</h2><span class="small muted" id="usageNote">Aguardando busca</span></div><div id="usage" class="empty">Os dados aparecem aqui depois da busca.</div></section>
+<section class="panel"><div class="rowhead"><h2>Replays encontrados</h2><button type="button" id="loadMore" class="secondary" disabled>Carregar mais</button></div><div id="replays" class="empty">Nenhuma busca realizada.</div></section>
+<section class="panel"><h2>Preparação sugerida</h2><div id="recommendations" class="empty">Depois da análise, confira os padrões nos replays antes de definir sua preparação.</div><div class="notice">Esta versão calcula frequência somente a partir das prévias de time extraídas dos replays que carregaram com sucesso. Isso não equivale à usage oficial de ladder. As sugestões são pistas de scouting, não um counterteam gerado por um simulador competitivo.</div></section>
+<section class="panel">
+<h2>Scout de torneios da Smogon</h2>
+<p class="muted small">Pesquise torneios pelo nick e associe cada replay ao torneio certo. O nome do torneio não é incluído de forma confiável na API de replays, então confira o tópico/rodada antes de registrar.</p>
+<div class="actions" style="margin-bottom:12px"><a id="tournamentSearch" class="link" href="https://www.smogon.com/forums/search/" target="_blank" rel="noopener">Pesquisar torneios no fórum ↗</a><a id="googleTournamentSearch" class="link" href="https://www.google.com/search?q=site%3Asmogon.com%2Fforums%2F+Pokemon+Showdown+tournament" target="_blank" rel="noopener">Pesquisar no Google ↗</a></div>
+<form id="tournamentForm" class="tour-form">
+<div class="field"><label for="tourName">Nome do torneio</label><input id="tourName" placeholder="Ex.: PTSL II" required></div>
+<div class="field"><label for="tourRound">Rodada / semana (opcional)</label><input id="tourRound" placeholder="Ex.: Week 3"></div>
+<div class="field wide"><label for="tourReplay">Link do replay</label><input id="tourReplay" placeholder="https://replay.pokemonshowdown.com/..." required></div>
+<button type="submit">Adicionar replay de torneio</button>
+</form>
+<div id="tournamentReplays" class="empty">Nenhum replay de torneio associado ainda.</div>
+</section>
+<div class="footer">Blackxed Scout · Projeto comunitário independente · Sem afiliação oficial com Pokémon Showdown ou Smogon.</div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = s => String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const pretty = f => ({gen9ou:'SV OU',gen9uu:'SV UU',gen9ru:'SV RU',gen9nu:'SV NU',gen9pu:'SV PU',gen9ubers:'SV Ubers',gen9lc:'SV LC',gen9monotype:'SV Monotype',gen9doublesou:'SV Doubles OU',gen9nationaldex:'National Dex',gen8ou:'SS OU',gen7ou:'SM OU',gen6ou:'ORAS OU',gen5ou:'BW OU',gen4ou:'DPP OU',gen3ou:'ADV OU',gen2ou:'GSC OU',gen1ou:'RBY OU'}[f] || f || 'Todos os formatos');
+let accounts=[], allResults=[], seenReplayIds=new Set(), nextBefore=null, activeFormat='', primaryNick='';
+function renderAccounts(){
+ const nick=$('nick').value.trim();
+ if(nick && !accounts.some(a=>norm(a.name)===norm(nick)))accounts.unshift({name:nick,checked:true});
+ $('accounts').innerHTML=accounts.map((a,i)=>`<label class="account"><input type="checkbox" data-account="${i}" ${a.checked?'checked':''}>${esc(a.name)} <span class="tag">selecionável</span><button type="button" class="secondary" data-remove="${i}" style="padding:2px 6px">×</button></label>`).join('');
+ $('accounts').querySelectorAll('[data-account]').forEach(el=>el.addEventListener('change',()=>{accounts[+el.dataset.account].checked=el.checked;updateLinks()}));
+ $('accounts').querySelectorAll('[data-remove]').forEach(el=>el.addEventListener('click',()=>{accounts.splice(+el.dataset.remove,1);renderAccounts()}));
+}
+function updateLinks(){
+ const nick=$('nick').value.trim();
+ const fmt=$('customFormat').value.trim()||$('tier').value;
+ const selected=accounts.filter(a=>a.checked).map(a=>a.name);
+ const base='https://replay.pokemonshowdown.com/';
+ $('profileLink').href='https://pokemonshowdown.com/users/'+encodeURIComponent(nick.toLowerCase());
+ $('replaySearch').href=base+'?user='+encodeURIComponent(selected.join(','))+(fmt?'&format='+encodeURIComponent(fmt):'');
+ $('forumSearch').href='https://www.smogon.com/forums/search/?q='+encodeURIComponent(nick);
+ $('tournamentSearch').href='https://www.smogon.com/forums/search/?q='+encodeURIComponent(nick+' tournament');
+}
+function statsCard(values){$('stats').innerHTML=values.map(v=>`<div class="stat"><div class="n">${esc(v[0])}</div><div class="l">${esc(v[1])}</div></div>`).join('')}
+function teamFromLog(log, playerId){
+ const found=new Set();
+ for(const line of (log||'').split('\n')){
+   const m=line.match(/^\|poke\|p([12])\|([^,|]+)/);
+   if(m && (!playerId || m[1]===playerId))found.add(m[2].trim());
+ }
+ return [...found];
+}
+async function fetchReplay(r){try{const res=await fetch(`https://replay.pokemonshowdown.com/${encodeURIComponent(r.id)}.json`);if(!res.ok) return null;return await res.json()}catch{return null}}
+function drawReplays(){
+ if(!allResults.length){$('replays').className='empty';$('replays').textContent='Nenhum replay público encontrado nesta busca.';return}
+ $('replays').className='';
+ $('replays').innerHTML=allResults.map(r=>{
+ const date=r.uploadtime?new Date(r.uploadtime*1000).toLocaleDateString('pt-BR'):'Data não informada';
+ const id=r.id||`${r.format}-${r.uploadtime}-${r.p1}-${r.p2}`;
+ return `<div class="replay"><span class="badge">${esc(pretty(r.format))}</span><div class="replay-main"><div class="replay-title">${esc(r.p1||'Jogador 1')} vs ${esc(r.p2||'Jogador 2')}</div><div class="muted small">${esc(date)}${r.rating?' · rating '+esc(r.rating):''}</div></div><a href="https://replay.pokemonshowdown.com/${encodeURIComponent(id)}" target="_blank" rel="noopener">Ver replay ↗</a></div>`;
+ }).join('');
+}
+async function loadPage(append=false){
+ const chosen=accounts.filter(a=>a.checked).map(a=>a.name);
+ if(!chosen.length)throw new Error('Selecione pelo menos uma conta para pesquisar.');
+ if(chosen.length>1 && !$('confirmIdentity').checked)throw new Error('Marque a confirmação manual se quiser combinar várias contas na mesma análise.');
+ const fmt=$('customFormat').value.trim()||$('tier').value;
+ activeFormat=fmt; primaryNick=$('nick').value.trim();
+ const responses=await Promise.allSettled(chosen.map(async name=>{
+   const u=new URL('https://replay.pokemonshowdown.com/search.json');
+   u.searchParams.set('user',name);
+   if(fmt)u.searchParams.set('format',fmt);
+   if(append && nextBefore)u.searchParams.set('before',String(nextBefore));
+   const res=await fetch(u.toString(),{headers:{'Accept':'application/json'}});
+   if(!res.ok)throw new Error(`HTTP ${res.status} ao consultar ${name}`);
+   const data=await res.json();
+   if(!Array.isArray(data))throw new Error(`Resposta inesperada da API para ${name}`);
+   return data;
+ }));
+ const errors=responses.filter(x=>x.status==='rejected').map(x=>x.reason?.message||'Falha na consulta');
+ let combined=responses.filter(x=>x.status==='fulfilled').flatMap(x=>x.value).filter(r=>r && r.id);
+ combined=combined.filter(r=>!r.private && [r.p1,r.p2].some(p=>chosen.some(n=>norm(n)===norm(p))));
+ const unique=new Map();
+ for(const r of combined) unique.set(r.id,r);
+ combined=[...unique.values()].sort((a,b)=>(b.uploadtime||0)-(a.uploadtime||0));
+ if(!append){allResults=[];seenReplayIds.clear();}
+ const fresh=combined.filter(r=>!seenReplayIds.has(r.id));
+ fresh.forEach(r=>seenReplayIds.add(r.id));
+ if(!append)allResults=combined;
+ else allResults=allResults.concat(fresh);
+ const last=combined.length ? combined[combined.length-1] : null;
+ nextBefore=combined.length>=50 && last?.uploadtime ? last.uploadtime : null;
+ $('loadMore').disabled=!nextBefore;
+ $('loadMore').textContent=nextBefore?'Carregar mais':'Fim dos resultados';
+ $('replaySearch').href='https://replay.pokemonshowdown.com/?user='+encodeURIComponent(chosen.join(','))+(fmt?'&format='+encodeURIComponent(fmt):'');
+ renderAccounts();updateLinks();drawReplays();
+ if(errors.length && !allResults.length){
+   $('status').innerHTML='<span class="error">Não consegui consultar a API de replays. '+esc(errors.join(' · '))+'<br>Abra a busca oficial de replays pelo link acima. Se estiver usando o arquivo baixado diretamente, publique no GitHub Pages e tente pelo endereço https://.</span>';
+ } else if(!allResults.length){
+   $('status').innerHTML='A API respondeu, mas não retornou replays públicos para esse nick/formato. Confira a grafia, deixe o formato em “Todos os formatos” ou abra a <a class="link" target="_blank" rel="noopener" href="'+$('replaySearch').href+'">busca oficial ↗</a>.';
+ } else {
+   $('status').textContent=`Encontrados ${allResults.length} replay(s) públicos únicos para ${chosen.join(', ')}${fmt?' · '+pretty(fmt):' · todos os formatos'}.`+(errors.length?' Algumas contas falharam: '+errors.join(' · '):'');
+ }
+ const details=await Promise.all(allResults.slice(0,35).map(async r=>({r,detail:await fetchReplay(r)})));
+ const counts=new Map();let sampleWithTeam=0,wins=0;
+ for(const {r,detail} of details){
+   if(!detail?.log)continue;
+   const player=chosen.find(n=>norm(n)===norm(r.p1)||norm(n)===norm(r.p2));
+   const pid=norm(r.p1)===norm(player)?'1':norm(r.p2)===norm(player)?'2':'';
+   const team=teamFromLog(detail.log,pid);
+   if(team.length)sampleWithTeam++;
+   team.forEach(p=>counts.set(p,(counts.get(p)||0)+1));
+   const winLine=detail.log.split('\n').find(x=>x.startsWith('|win|'));
+   if(winLine && chosen.some(n=>norm(n)===norm(winLine.slice(5))))wins++;
+ }
+ const ordered=[...counts.entries()].sort((a,b)=>b[1]-a[1]);
+ statsCard([[allResults.length,'Replays únicos'],[wins,'Vitórias identificadas*'],[ordered.length,'Pokémon vistos'],[fmt?pretty(fmt):'Todos','Formato']]);
+ $('usageNote').textContent=`${sampleWithTeam} replay(s) analisados com prévia de time (máx. 35 por atualização)`;
+ if(ordered.length){
+ $('usage').className='';$('usage').innerHTML='<table><thead><tr><th>Pokémon</th><th>Aparições</th><th>% dos replays com prévia</th></tr></thead><tbody>'+ordered.slice(0,20).map(([p,n])=>`<tr><td><strong>${esc(p)}</strong></td><td>${n}</td><td><div>${sampleWithTeam?Math.round(n/sampleWithTeam*100):0}%</div><div class="bar"><span style="width:${sampleWithTeam?Math.min(100,n/sampleWithTeam*100):0}%"></span></div></td></tr>`).join('')+'</tbody></table>';
+ }else{$('usage').className='empty';$('usage').textContent='Não foi possível extrair prévias de time desses replays. Os links dos jogos continuam disponíveis acima para conferência manual.'}
+ const top=ordered.slice(0,5).map(x=>x[0]);
+ $('recommendations').className='';
+ $('recommendations').innerHTML=`<ul>${top.length?`<li>Revise sets e respostas para os Pokémon mais vistos nesta amostra: <strong>${top.map(esc).join(', ')}</strong>.</li>`:''}<li>Compare datas e formatos; não misture usage de gerações diferentes como se fosse uma única estatística.</li><li>Associe jogos de torneio na seção abaixo e confirme tópico, rodada e replay antes de classificar uma batalha como torneio.</li><li>Esta versão não inventa counters automáticos: valide ameaças, speed tiers, itens e matchups com os replays e recursos competitivos da tier.</li></ul>`;
+}
+async function loadProfile(){
+ const nick=$('nick').value.trim().toLowerCase();if(!nick)return;
+ try{
+  const res=await fetch('https://pokemonshowdown.com/users/'+encodeURIComponent(nick)+'.json');
+  if(!res.ok)throw new Error();
+  const data=await res.json();
+  const ratings=data.ratings||{};
+  const entries=Object.entries(ratings).sort((a,b)=>(b[1]?.elo||b[1]?.rating||0)-(a[1]?.elo||a[1]?.rating||0)).slice(0,8);
+  $('ladder').innerHTML=entries.length?'<strong>Ratings públicos encontrados:</strong><table><thead><tr><th>Formato</th><th>Elo/rating</th><th>GXE</th></tr></thead><tbody>'+entries.map(([f,v])=>`<tr><td>${esc(pretty(f))}</td><td>${esc(v.elo??v.rating??'—')}</td><td>${v.gxe!=null?esc(v.gxe)+'%':'—'}</td></tr>`).join('')+'</tbody></table>':'O perfil respondeu, mas não trouxe ratings de ladder para exibir.';
+ }catch{$('ladder').textContent='Não foi possível carregar ratings do perfil agora. O nick pode não existir, o perfil pode não expor ratings ou a API pode estar indisponível.'}
+}
+$('nick').addEventListener('change',()=>{accounts=[];renderAccounts();updateLinks()});
+$('tier').addEventListener('change',updateLinks);$('customFormat').addEventListener('input',updateLinks);
+$('addAlias').addEventListener('click',()=>{const name=$('aliasInput').value.trim();if(!name)return;if(!accounts.some(a=>norm(a.name)===norm(name)))accounts.push({name,checked:true});$('aliasInput').value='';renderAccounts();updateLinks()});
+$('searchForm').addEventListener('submit',async e=>{
+ e.preventDefault();$('go').disabled=true;$('go').textContent='Buscando…';$('status').textContent='Consultando replays públicos e perfil…';
+ try{renderAccounts();updateLinks();await loadProfile();await loadPage(false)}
+ catch(err){$('status').innerHTML='<span class="error">'+esc(err.message||'Erro ao buscar dados.')+'</span>'}
+ finally{$('go').disabled=false;$('go').textContent='Analisar ↗'}
+});
+$('loadMore').addEventListener('click',async()=>{if(!nextBefore)return;$('loadMore').disabled=true;$('status').textContent='Carregando a próxima página…';try{await loadPage(true)}catch(err){$('status').innerHTML='<span class="error">'+esc(err.message||'Erro ao carregar mais.')+'</span>'}finally{$('loadMore').disabled=!nextBefore}});
+let tournamentEntries=[];
+function renderTournamentEntries(){
+ const host=$('tournamentReplays');
+ if(!tournamentEntries.length){host.className='empty';host.textContent='Nenhum replay de torneio associado ainda.';return}
+ host.className='';
+ host.innerHTML=tournamentEntries.map((t,i)=>`<div class="tour-item"><div class="tour-title">${esc(t.name)}${t.round?' · '+esc(t.round):''}</div><div class="muted small">${esc(t.player||primaryNick||$('nick').value.trim()||'Nick')}</div><a class="link" href="${esc(t.url)}" target="_blank" rel="noopener">Abrir replay ↗</a> <button type="button" class="secondary" data-tour-remove="${i}">Remover</button></div>`).join('');
+ host.querySelectorAll('[data-tour-remove]').forEach(el=>el.addEventListener('click',()=>{tournamentEntries.splice(+el.dataset.tourRemove,1);renderTournamentEntries()}));
+}
+$('tournamentForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const name=$('tourName').value.trim(), round=$('tourRound').value.trim(), raw=$('tourReplay').value.trim();
+ let url;
+ try{url=new URL(raw)}catch{$('status').innerHTML='<span class="error">Cole um link válido do replay.</span>';return}
+ if(url.protocol!=='https:' || !url.hostname.endsWith('replay.pokemonshowdown.com')){$('status').innerHTML='<span class="error">Use um link https://replay.pokemonshowdown.com/... válido.</span>';return}
+ tournamentEntries.unshift({name,round,url:url.href,player:$('nick').value.trim()});
+ $('tourName').value='';$('tourRound').value='';$('tourReplay').value='';
+ renderTournamentEntries();
+});
+$('nick').addEventListener('input',()=>{
+ const nick=$('nick').value.trim();
+ $('googleTournamentSearch').href='https://www.google.com/search?q='+encodeURIComponent('site:smogon.com/forums/ "'+nick+'" tournament Pokémon Showdown');
+});
+renderAccounts();updateLinks();renderTournamentEntries();
+</script></body></html>
