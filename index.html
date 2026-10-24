@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  const SUPABASE_URL = "https://inluwydysdsouropsqpn.supabase.co/rest/v1/";
+  const SUPABASE_URL = "https://inluwydysdsouropsqpn.supabase.co";
   const SUPABASE_KEY = "sb_publishable_EYKd_8ChVTLfUev4J0LWWg_6SctIoj-";
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 </script>
@@ -44,4 +44,32 @@ async function enviarNick(nick) {
   if (error) alert('Erro: ' + error.message);
   else alert('Solicitação enviada! ✅');
 }
+// Enviar solicitação de acesso
+document.getElementById('requestAccess').addEventListener('click', async () => {
+  const nickInput = document.getElementById('discordNick');
+  const statusEl = document.getElementById('requestStatus');
+  const nick = nickInput.value.trim();
+  
+  if (!nick) {
+    statusEl.textContent = '⚠️ Digite seu nick do Discord primeiro!';
+    return;
+  }
+  
+  statusEl.innerHTML = '<span class="spinner"></span>Enviando solicitação…';
+  
+  try {
+    const { data, error } = await supabase
+      .from('access_requests')
+      .insert([{ discord_nick: nick }])
+      .select();
+    
+    if (error) throw error;
+    
+    statusEl.textContent = '✅ Solicitação enviada com sucesso! Aguarde a aprovação.';
+    nickInput.value = '';
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent = '❌ Erro ao enviar: ' + err.message;
+  }
+});
 </script></body></html>
